@@ -82,7 +82,7 @@ namespace DelegasiAPI.Repository
             await conn.UpdateAsync(model, transaction);
 
             await transaction.CommitAsync();
-
+            
             return model;
         }
 

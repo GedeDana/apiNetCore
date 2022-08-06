@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using Mahas.Components;
+using DelegasiAPI.Helpers;
 using DelegasiAPI.Models.Validator;
 
 namespace DelegasiAPI.Controllers
 {
+    [ApiKey]
     [Route("api/[controller]")]
     [ApiController]
 
