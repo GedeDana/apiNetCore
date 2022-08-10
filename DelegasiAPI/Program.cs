@@ -3,6 +3,7 @@ using DelegasiAPI;
 using DelegasiAPI.Helpers;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,8 +42,15 @@ builder.Services.AddSwaggerGen(c =>
 
 
 
-var app = builder.Build();
 
+builder.Host
+    .UseSerilog((context, services, configuration) => configuration
+    .ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(services)
+    .Enrich.FromLogContext()
+    .WriteTo.Console());
+
+var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();

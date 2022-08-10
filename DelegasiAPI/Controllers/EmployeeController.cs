@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using Mahas.Components;
 using DelegasiAPI.Helpers;
 using DelegasiAPI.Models.Validator;
+using DelegasiAPI.Exceptions;
 
 namespace DelegasiAPI.Controllers
 {
@@ -59,8 +60,11 @@ namespace DelegasiAPI.Controllers
 
         [HttpGet]
         public async Task<ActionResult<List<EmployeeModel>>> GetAsync([FromQuery] PageFilter filter, string? nama = null)
+
         {
-             var result =  await _employeeRepository.GetAsync(nama, filter);
+            throw new DefaultException("Text error log");
+
+            var result =  await _employeeRepository.GetAsync(nama, filter);
 
             return Ok(result); 
         }
